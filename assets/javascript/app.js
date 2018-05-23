@@ -12,51 +12,51 @@ var questions = [
 
 var options = [
     [
-        "the angle at which a roof slopes", 
-        "the exterior cladding of a building", 
-        "a roofed projection from a sloping roof", 
+        "the angle at which a roof slopes",
+        "the exterior cladding of a building",
+        "a roofed projection from a sloping roof",
         "the portion of an exterior wall that projects above the edge of the roof"
     ],
     [
-        "used as a bonding agent between masonry units", 
-        "a structure over an area that is based on the form of an arch", 
-        "an ornament on top of a gable roof", 
+        "used as a bonding agent between masonry units",
+        "a structure over an area that is based on the form of an arch",
+        "an ornament on top of a gable roof",
         "stonework emphasized by roughly cut block faces"
     ],
     [
-        "the part of a sloping wall that overhangs a wall", 
-        "tiles for covering roofs and walls", 
-        "a small domed structure on top of a roof or larger dome", 
+        "the part of a sloping wall that overhangs a wall",
+        "tiles for covering roofs and walls",
+        "a small domed structure on top of a roof or larger dome",
         "openings in the walls of a building"
     ],
     [
-        "the exterior cladding of a building", 
-        "vertical member on each side of a window or door opening", 
-        "used as a bonding agent between masonry units", 
+        "the exterior cladding of a building",
+        "vertical member on each side of a window or door opening",
+        "used as a bonding agent between masonry units",
         "the portion of an exterior wall that projects above the edge of the roof"
     ],
     [
-        "a structure over an area that is based on the form of an arch", 
-        "a small tower usually projecting from the corner of a building", 
-        "a small domed structure on top of a roof or larger dome", 
+        "a structure over an area that is based on the form of an arch",
+        "a small tower usually projecting from the corner of a building",
+        "a small domed structure on top of a roof or larger dome",
         "used as a bonding agent between masonry units"
     ],
     [
-        "a small tower usually projecting from the corner of a building", 
-        "the part of a sloping wall that overhangs a wall", 
-        "openings in the walls of a building", 
+        "a small tower usually projecting from the corner of a building",
+        "the part of a sloping wall that overhangs a wall",
+        "openings in the walls of a building",
         "the angle at which a roof slopes"
     ],
     [
-        "stonework emphasized by roughly cut block faces", 
-        "the portion of an exterior wall that projects above the edge of the roof", 
-        "used as a bonding agent between masonry units", 
+        "stonework emphasized by roughly cut block faces",
+        "the portion of an exterior wall that projects above the edge of the roof",
+        "used as a bonding agent between masonry units",
         "tiles for covering roofs and wall"
     ],
     [
-        "an ornament on top of a gable roof", 
-        "used as a bonding agent between masonry units", 
-        "vertical member on each side of a window or door opening", 
+        "an ornament on top of a gable roof",
+        "used as a bonding agent between masonry units",
+        "vertical member on each side of a window or door opening",
         "the exterior cladding of a building"
     ],
 ];
@@ -75,7 +75,7 @@ var answers = [
 var userAnswers = [];
 
 var time = 0;
-var timeEnd = (5 * 60);
+var timeEnd = 5 * 60 * 1000;
 var question = 0;
 var option = 4;
 var wrong = [];
@@ -106,6 +106,8 @@ function instructions() {
 
 function beginQuiz() {
     intervalId = setInterval(count, 1000);
+    
+    setTimeout(timedOut, timeEnd);
     for (i = 0; i < questionNum; i++) {
         var q = $("<div>").attr("class", "question").text(questions[i]);
         $("#quiz").append(q);
@@ -127,16 +129,16 @@ function beginQuiz() {
     $("#submit").on("click", function () {
         submitQuiz();
     });
-
 }
 
+
 function submitQuiz() {
+    clearInterval(intervalId);
     for (i = 0; i < questionNum; i++) {
         var selected = $("input[class=" + i + "]:checked").val();
         userAnswers.push(selected);
-        console.log(userAnswers[i]);
     }
-    
+
     $("#quiz").attr("style", "display:none;")
     checkAnswers();
 
@@ -145,7 +147,6 @@ function submitQuiz() {
 function checkAnswers() {
 
     for (i = 0; i < questionNum; i++) {
-        console.log(userAnswers[i] + " & " + answers[i]);
         if (userAnswers[i] == answers[i]) {
             correct++;
             wrong.push(0);
@@ -156,7 +157,12 @@ function checkAnswers() {
 
     end(correct);
 }
-
+function timedOut() {
+    clearInterval(intervalId);
+    submitQuiz();
+    var timeUp = $("<div>").html("Time's up!");
+    $("#end").prepend(timeUp);
+}
 function end(c) {
     var divEnd = $("<div>").html("You got " + c + "/" + questionNum + " correct. Your score is " + percentage(c) + "%");
     $("#end").removeAttr("style").append(divEnd);
@@ -165,22 +171,6 @@ function percentage(correct) {
     var num = correct / questionNum
     return Math.round(num * 100)
 }
-
-/*
-function beginQuiz() {
-    intervalId = setInterval(count, 1000);
-    for (i = 0; i < questionNum; i++) {
-        for (j = 0; j < option; j++) {
-            var input = $("<input>").attr("type", "radio").attr("id", i).text(options[i][j]);
-            var inDiv = $("<div>").append(input);
-        }
-        var q = $("<div>").text(questions[i]).attr("class", "question");
-        var all = $("<div>")
-        all.append(q).append(inDiv);
-        $("#quiz").append(all);
-    }
-};
-*/
 
 function count() {
     time++;
