@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link rel="stylesheet" type="text/css" href="assets/css/reset.css">
-    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+   <link rel="stylesheet" type="text/css" href="assets/css/style.css">
     <link href="https://fonts.googleapis.com/css?family=Montserrat|Open+Sans" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
@@ -17,16 +17,34 @@
         <div id="left"></div>
 
         <div id="right">
-            <div id="title">Architectural Terminology Quiz</div>
+            <div id="title">Architecture Terminology Quiz</div>
             <div id="start">
-                Click to start quiz!<br>
-                <button id="quizStart">
-                    Go
+                <button id="showInstruct">
+                    Instructions
                 </button>
             </div>
-            <div id="quiz">hey</div>
+            <div id="instruct">
+                <p>You have 5 minutes to select the correct definition of each term.</p>
+                <p>The time will be displayed in the column to the left.</p>
+                <p>Good Luck!</p>
+                <button id="startQuiz">
+                    Start Quiz
+                </button>
+            </div>
+            <div id="quiz"></div>
+            <div id="end"></div>
         </div>
     </div>
+    <!--<script>
+        var questions = [
+            "question 1",
+            "question 2",]
+        $(document).ready(function () {
+            var input = $("<input>").attr("type", "radio").attr("id", "00").after();
+            var label = $('<label>').attr("for", "00").html(questions[0]);        
+            $("#left").append(input).append(label);
+        });
+    </script>-->
     <script src="assets/javascript/app.js"></script>
 </body>
 

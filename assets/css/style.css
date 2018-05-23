@@ -8,40 +8,59 @@ font-family: 'Montserrat', sans-serif;
     font-size: 20px;
     box-sizing: border-box;
     text-align: center;
+    cursor: url('../images/cursor.png') 15 15, auto;
+}
+
+div {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 20px;
+}
+p {
+    margin-bottom: 10px;
 }
 
 #container {
     display: flex;
     flex-wrap: nowrap;
     width: 100%;
-    background:  #f1df3b;
+    background:  #f1f1f1;
 }
 
 #left {
     display: flex;
     flex-wrap: nowrap;
     width: 25%;
+    height: 100vh;
     padding: 30px;
-    background: #f05151;
+    background: #f8a231;
 }
 
 #right {
     display: flex;
     flex-wrap: nowrap;
     width: 75%;
-    padding: 30px;
+    height: 100vh;
+    padding: 30px 0px 0px 30px;
     flex-shrink: 0;
     flex-direction: column;
 }
 
-.option {
-    width: 100%;
-    text-align: left;
-    color:red;
+.question {
+    font-family: 'Montserrat', sans-serif;
+    background: #f8eb71;
+    font-size: 28px;
+    font-weight:600;
+    padding: 10px 0px 10px 10px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    letter-spacing: 2px;
 }
-.option:focus{
-    background: #4052bc;
+
+.options div{
+    font-family: 'Open Sans', sans-serif;
+    margin: 10px 0 10px 0;
 }
+
 
 #title {
     width: 100%;
@@ -51,14 +70,15 @@ font-family: 'Montserrat', sans-serif;
     font-weight: bold;
     flex-shrink: 0;
     order:0;
-    margin-bottom:2vw;
+    margin-bottom:4vw;
     
 }
 #quiz {
     width: 100%;
     order:1;
-    text-align: left;
-    display: none;
+    text-align: center;
+    overflow: auto;
+
 }
 
 #quiz div{
@@ -70,19 +90,54 @@ font-family: 'Montserrat', sans-serif;
 }
 #timer {
     font-family: 'Montserrat', sans-serif;
-    font-size: 2vw;
-    font-weight: 500;
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: 800;
     width:100%;
 }
 #start {
     display: none;
 }
-
+#instruct {
+    display: none;
+}
 .hide {
     display: none;
 }
 
 .show {
     display: inline-block;
+}
+
+button {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 24px;
+    line-height: 32px;
+    text-align: center;
+    height: 50px;
+    width: 200px;
+    border: 0;
+    background: #2967ec;
+    color: #fdfdfd;
+    margin: 30px;
+}
+
+button:active {
+    background: #f8a231;
+    border: 0;
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+::-webkit-scrollbar-button {
+    display: none;
+}
+::-webkit-scrollbar-thumb {
+    background: #2967ec; 
+}
+
+::-webkit-scrollbar-track {
+    background: #f8a231;
 }
 
