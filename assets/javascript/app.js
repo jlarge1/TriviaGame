@@ -157,16 +157,19 @@ function checkAnswers() {
 
     end(correct);
 }
+
 function timedOut() {
     clearInterval(intervalId);
     submitQuiz();
     var timeUp = $("<div>").html("Time's up!");
     $("#end").prepend(timeUp);
 }
+
 function end(c) {
     var divEnd = $("<div>").html("You got " + c + "/" + questionNum + " correct. Your score is " + percentage(c) + "%");
     $("#end").removeAttr("style").append(divEnd);
 }
+
 function percentage(correct) {
     var num = correct / questionNum
     return Math.round(num * 100)
